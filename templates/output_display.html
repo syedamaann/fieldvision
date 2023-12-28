@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Output Display</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+            background-color: #f8f9fa;
+        }
+        .navbar {
+            background-color: #007bff;
+            color: #ffffff;
+        }
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ffffff !important;
+        }
+        .output-container {
+            background-color: #ffffff;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            padding: 20px;
+        }
+        .output-image {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+        .home-button {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Output Display</a>
+        </div>
+    </nav>
+
+    <br>
+
+<br>
+    
+    <div class="container">
+      {% for output_file in output_files %}
+          <div class="output-container">
+              <h2>{{ error_names[loop.index0] }}</h2>
+              <p class="mb-4">Error Metrics:</p>
+              <ul>
+                  <li>MAE: {{ errors[loop.index0][0] }}</li>
+                  <li>MSE: {{ errors[loop.index0][1] }}</li>
+                  <li>R2: {{ errors[loop.index0][2] }}</li>
+              </ul>
+              <img class="output-image" src="/{{ output_file }}" alt="{{ error_names[loop.index0] }}">
+          </div>
+      {% endfor %}
+      <a class="btn btn-primary home-button" href="/">Home</a>
+  </div>
+  
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
